@@ -79,6 +79,12 @@ _MODEL_HANDLERS = {
 _VALID_MODELS = ["codebert", "logistictfidf", "logisticwordembedding"]
 
 
+@app.get("/")
+async def root():
+    """Endpoint health check untuk mencegah server tidur (bisa di-ping)."""
+    return {"status": "healthy", "message": "AICodeTrace API is active"}
+
+
 @app.post("/predict", response_model=PredictResponse)
 async def predict(req: PredictRequest):
     """
